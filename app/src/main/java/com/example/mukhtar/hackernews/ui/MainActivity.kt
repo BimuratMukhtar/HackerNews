@@ -1,7 +1,6 @@
 package com.example.mukhtar.hackernews.ui
 
 import android.os.Bundle
-import com.example.mukhtar.hackernews.ui.news.adapter.ViewPagerAdapter
 import android.support.v4.view.ViewPager
 import com.example.mukhtar.hackernews.Constants
 import com.example.mukhtar.hackernews.ui.news.NewsListFragment

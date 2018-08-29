@@ -17,12 +17,11 @@ interface APIInterface {
 //            @Field("password") password: String
 //    ): Single<Response<LoginResponse>>
 //
-//    @GET("api/sprs/topics")
-//    fun getTopicsBySubject(
-//            @Query("subject") subject: Int,
-//            @Header("Authorization") header: String = SingletonSharedPref.getInstance().getString(Constants.KEY_TOKEN)
-//    ): Single<Response<List<TopicItem>>>
-//
+    @GET("item/{id}.json?print=pretty")
+    fun getItemById(
+            @Path("id") id: Int
+    ): Single<Response<Item>>
+
     @GET
     fun getItemIds(
             @Url url: String

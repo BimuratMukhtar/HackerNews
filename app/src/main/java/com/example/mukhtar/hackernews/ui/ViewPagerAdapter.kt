@@ -1,4 +1,4 @@
-package com.example.mukhtar.hackernews.ui.news.adapter
+package com.example.mukhtar.hackernews.ui
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

@@ -6,10 +6,17 @@ import com.example.mukhtar.hackernews.ui.base.MvpView
 
 interface NewsListMvpView: MvpView {
     fun updateAdapter(subjects: List<Item>)
-    fun onItemClicked(item: Item)
+    fun onItemResultCome(item: Item, position: Int)
 }
 
 interface NewsListMvpPresenter<V : NewsListMvpView> : MvpPresenter<V> {
     fun onViewInitialized(url: String)
     fun onRefresh()
+    fun onItemBound(item: Item, position: Int)
+}
+
+interface NewsListListener{
+    fun onItemClick(item: Item)
+    fun onOpenCommentsClick(item: Item)
+    fun onItemViewBound(item: Item, position: Int)
 }
