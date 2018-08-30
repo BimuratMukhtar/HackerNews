@@ -32,6 +32,7 @@ class MainActivity : BaseActivity() {
         adapter.addFragment(NewsListFragment.newInstance(Constants.NEW), "New")
         adapter.addFragment(NewsListFragment.newInstance(Constants.TOP), "Top")
         adapter.addFragment(NewsListFragment.newInstance(Constants.BEST), "Best")
+        viewPager.offscreenPageLimit = 2
         viewPager.adapter = adapter
     }
 }

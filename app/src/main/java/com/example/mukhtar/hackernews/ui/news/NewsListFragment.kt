@@ -8,26 +8,27 @@ import android.view.ViewGroup
 import com.example.mukhtar.hackernews.R
 import com.example.mukhtar.hackernews.models.Item
 import com.example.mukhtar.hackernews.ui.base.BaseFragment
+import com.example.mukhtar.hackernews.ui.comments.CommentsActivity
 import com.example.mukhtar.hackernews.ui.item_detail.ItemDetailActivity
 import com.example.mukhtar.hackernews.ui.news.adapter.NewsListAdapter
 import kotlinx.android.synthetic.main.fragment_news_list.*
 import timber.log.Timber
 import javax.inject.Inject
 
-private const val ARG_URL = "url"
+private const val ARG_TYPE = "url"
 
 class NewsListFragment : BaseFragment(), NewsListMvpView, NewsListListener {
 
     @Inject
     lateinit var mPresenter: NewsListMvpPresenter<NewsListMvpView>
 
-    private lateinit var url: String
     private var newsListAdapter: NewsListAdapter? = null
+    private var type: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            url = it.getString(ARG_URL)
+            type = it.getInt(ARG_TYPE)
         }
     }
 
@@ -40,7 +41,7 @@ class NewsListFragment : BaseFragment(), NewsListMvpView, NewsListListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter.onViewInitialized(url)
+        mPresenter.onViewInitialized(type)
     }
 
     override fun onDestroyView() {
@@ -91,7 +92,7 @@ class NewsListFragment : BaseFragment(), NewsListMvpView, NewsListListener {
     }
 
     override fun onOpenCommentsClick(item: Item) {
-        showMessage("Opening Comments")
+        CommentsActivity.open(context!!, item)
     }
 
     override fun onItemResultCome(item: Item, position: Int) {
@@ -102,12 +103,16 @@ class NewsListFragment : BaseFragment(), NewsListMvpView, NewsListListener {
         mPresenter.onItemBound(item, position)
     }
 
+    override fun showNoNetworkMessage() {
+        showMessage("You are offline")
+    }
+
     companion object {
         @JvmStatic
-        fun newInstance(url: String) =
+        fun newInstance(type: Int) =
                 NewsListFragment().apply {
                     arguments = Bundle().apply {
-                        putString(ARG_URL, url)
+                        putInt(ARG_TYPE, type)
                     }
                 }
     }

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.mukhtar.hackernews.di.ActivityContext;
+import com.example.mukhtar.hackernews.ui.comments.CommentsMvpPresenter;
+import com.example.mukhtar.hackernews.ui.comments.CommentsMvpView;
+import com.example.mukhtar.hackernews.ui.comments.CommentsPresenter;
 import com.example.mukhtar.hackernews.ui.news.NewsListFragment;
 import com.example.mukhtar.hackernews.ui.news.NewsListMvpPresenter;
 import com.example.mukhtar.hackernews.ui.news.NewsListMvpView;
@@ -46,8 +49,14 @@ public class ActivityModule {
     }
 
     @Provides
-    NewsListMvpPresenter<NewsListMvpView> provideRatePresenter(
+    NewsListMvpPresenter<NewsListMvpView> provideNewsListPresenter(
             NewsListPresenter<NewsListMvpView> presenter){
+        return presenter;
+    }
+
+    @Provides
+    CommentsMvpPresenter<CommentsMvpView> provideCommentsPresenter(
+            CommentsPresenter<CommentsMvpView> presenter){
         return presenter;
     }
 //

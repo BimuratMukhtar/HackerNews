@@ -34,7 +34,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     private final NetworkHelper networkHelper;
     private final SchedulerProvider mSchedulerProvider;
     private final CompositeDisposable mCompositeDisposable;
-    private final DatabaseHelper mDatabaseHelper;
+    private final DatabaseHelper databaseHelper;
 
     private V mMvpView;
 
@@ -46,7 +46,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
         this.networkHelper = dataManager;
         this.mSchedulerProvider = schedulerProvider;
         this.mCompositeDisposable = compositeDisposable;
-        this.mDatabaseHelper = databaseHelper;
+        this.databaseHelper = databaseHelper;
     }
 
     @Override
@@ -86,6 +86,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     public SingletonSharedPref getSharedPreferences() {
         return SingletonSharedPref.getInstance();
+    }
+
+    public DatabaseHelper getDatabaseHelper() {
+        return databaseHelper;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.mukhtar.hackernews.api
 
 import com.example.mukhtar.hackernews.SingletonSharedPref
+import com.example.mukhtar.hackernews.models.Comment
 import com.example.mukhtar.hackernews.models.Item
 import io.reactivex.Single
 import okhttp3.MultipartBody
@@ -21,6 +22,11 @@ interface APIInterface {
     fun getItemById(
             @Path("id") id: Int
     ): Single<Response<Item>>
+
+    @GET("item/{id}.json?print=pretty")
+    fun getCommentById(
+            @Path("id") id: Int
+    ): Single<Response<Comment>>
 
     @GET
     fun getItemIds(

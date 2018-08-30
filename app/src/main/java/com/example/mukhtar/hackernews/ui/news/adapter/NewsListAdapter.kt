@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.example.mukhtar.hackernews.R
 import com.example.mukhtar.hackernews.models.Item
 import com.example.mukhtar.hackernews.ui.news.NewsListListener
+import kotlinx.android.synthetic.main.item_news_loaded.view.*
 import java.util.*
 
 class NewsListAdapter(private val listener: NewsListListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -34,14 +35,7 @@ class NewsListAdapter(private val listener: NewsListListener) : RecyclerView.Ada
         val currentItem = items[position]
         if(getItemViewType(position) == TYPE_LOADED){
             holder as LoadedViewHolder
-            holder.mItemTitle.text = currentItem.title
-
-            holder.itemView.setOnClickListener {
-                listener.onItemClick(currentItem)
-            }
-            holder.mItemButtonComments.setOnClickListener {
-                listener.onOpenCommentsClick(currentItem)
-            }
+            holder.bind(currentItem)
         }else{
             holder as NotLoadedViewHolder
             listener.onItemViewBound(currentItem, position)
@@ -64,8 +58,20 @@ class NewsListAdapter(private val listener: NewsListListener) : RecyclerView.Ada
     }
 
     inner class LoadedViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        var mItemTitle: TextView = mView.findViewById(R.id.title)
-        var mItemButtonComments: Button = mView.findViewById(R.id.buttonComments)
+        fun bind(item: Item){
+            itemView.titleTextView.text = item.title
+            itemView.authorTextView.text = item.by
+            itemView.viewCommentsButton.text = String.format("view %d comments", item.descendants)
+            itemView.dateTextView.text = item.getTimeInString()
+
+
+            itemView.setOnClickListener {
+                listener.onItemClick(item)
+            }
+            itemView.viewCommentsButton.setOnClickListener {
+                listener.onOpenCommentsClick(item)
+            }
+        }
     }
 
     inner class NotLoadedViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
