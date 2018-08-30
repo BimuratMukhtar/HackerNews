@@ -21,7 +21,7 @@ open class Comment(
         var kidsRealm: RealmList<Int> = RealmList()
 ): RealmObject(){
         fun getTimeInString(): String{
-                val date = Date(time)
+                val date = Date(time*1000)
                 val postFormater = SimpleDateFormat("dd.MM.yyyy", Locale.US)
                 return postFormater.format(date)
         }

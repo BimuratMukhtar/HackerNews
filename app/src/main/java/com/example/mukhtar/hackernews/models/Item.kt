@@ -23,7 +23,7 @@ open class Item(
         var url: String? = null
 ): RealmObject(){
         fun getTimeInString(): String{
-                val date = Date(time!!)
+                val date = Date(time!!*1000)
                 val postFormater = SimpleDateFormat("dd.MM.yyyy", Locale.US)
                 return postFormater.format(date)
         }
