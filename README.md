@@ -21,3 +21,5 @@ Realm for offline usage; <br />
 RxJava for asynchronous requests abstracting away concerns about things like low-level threading;<br />
 Dagger for DI;<br />
 
+
+Attention: When application first started (first time after installation), device must have internet access otherwise app throws exception (I forgot consider this case, i can fix it, but for now decided do not update last commit time on repo files) 
