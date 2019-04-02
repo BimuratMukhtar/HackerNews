@@ -15,9 +15,9 @@ Also impletemented pagination
 
 Implemented using mostly Kotlin then Java, uses MVP pattern
 
-Uses libraries such as: 
-Retrofit for handling requests; 
-Realm for offline usage; 
-RxJava for asynchronous requests abstracting away concerns about things like low-level threading;
-Dagger for DI;
+Uses libraries such as: <br />
+Retrofit for handling requests; <br />
+Realm for offline usage; <br />
+RxJava for asynchronous requests abstracting away concerns about things like low-level threading;<br />
+Dagger for DI;<br />
 
