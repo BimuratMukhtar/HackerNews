@@ -1,5 +1,5 @@
 # HackerNews
-Hacker News client:
+Hacker News client (Android Interview Task):
 
 https://github.com/HackerNews/API
 
